@@ -1,0 +1,43 @@
+﻿<Page
+    x:Name="Index"
+    x:Class="MediaHub_UWP.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark">
+    <Page.Resources>
+        <ItemsPanelTemplate x:Key="GridViewWidgetPanel">
+            <ItemsWrapGrid Orientation="Horizontal"
+                   
+                   HorizontalAlignment="Center"/>
+        </ItemsPanelTemplate>
+    </Page.Resources>
+   
+    
+    <NavigationView IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsBackEnabled="False" x:Name="NavBar" PaneDisplayMode="Top" IsPaneOpen="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+
+        <NavigationView.MenuItems>
+            <NavigationViewItem Tag="home" Icon="Home" Content="Home" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+            <NavigationViewItem Tag="movies" Content="Movies">
+            </NavigationViewItem>
+
+            <NavigationViewItem Tag="shows" Content="Shows">
+            </NavigationViewItem>
+            
+            <NavigationViewItemSeparator/>
+        </NavigationView.MenuItems>
+
+        <Frame x:Name="MainContent">
+            <GridView ItemsPanel="{StaticResource GridViewWidgetPanel}" x:Name="WidgetGridView"
+              Margin="0,0,0,8"
+              Padding="5,5,5,5"
+              VerticalAlignment="Stretch" 
+              HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+            </GridView>
+        </Frame>
+    </NavigationView>
+</Page>
