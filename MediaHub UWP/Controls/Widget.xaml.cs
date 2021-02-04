@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -26,7 +27,14 @@ namespace MediaHub_UWP.Controls
         {
             InitializeComponent();
             Image.Source = new BitmapImage(new Uri($"https://picsum.photos/300/300?random={Random.Next(1,100)}"));
-            Image.Stretch = Stretch.Fill;
+        }
+
+        public Widget(string title, string year, string path)
+        {
+            InitializeComponent();
+            Title.Text = title;
+            Year.Text = year;
+            Image.Source = new BitmapImage(new Uri($@"https://image.tmdb.org/t/p/original/{path}"));
         }
     }
 }
