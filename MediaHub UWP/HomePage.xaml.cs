@@ -1,22 +1,8 @@
 ﻿using MediaHub_UWP.Controls;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows.Input;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
+using System.Threading.Tasks;
+using TMDbLib.Client;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
+
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,39 +13,39 @@ namespace MediaHub_UWP
     /// </summary>
     public sealed partial class HomePage : Page
     {
+        private readonly TMDbClient Client;
+
         public HomePage()
         {
             InitializeComponent();
+
+            Client = Helper.CreateClient();
             
-            CreateGrids();
+        }
+
+        public async void LoadPopular()
+        {
+            var popularMovies = await Client.GetMoviePopularListAsync(page: 1);
+
+            foreach (var movie in popularMovies.Results)
+            {
+                PopularList.Items.Add(new Widget(movie.Title, movie.ReleaseDate.HasValue ? movie.ReleaseDate.Value.ToShortDateString() : "nan", movie.BackdropPath));
+            }
         }
 
         public void CreateGrids()
         {
-            var rand = new Random();
-            
-            for (var i = 0; i < 20; i++)
-            {
-                //var grid = new Grid
-                //{
-                //    Margin = new Thickness(8),
-                //    Padding = new Thickness(0, 0, 0, 0),
-                //    Background = new SolidColorBrush(Colors.Red)
-                //};
+            //for (var i = 0; i < 20; i++)
+            //{
+            //    PopularList.Items.Add(new Widget());
+            //    TrendingList.Items.Add(new Widget());
+            //    FreeToWatchList.Items.Add(new Widget());
+            //}
+        }
 
-                //grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-
-                //var image = new BitmapImage(new Uri($"https://picsum.photos/300/300?random={rand.Next(1,100)}"));
-
-                //grid.Children.Add(new Image { Source = image, Stretch = Stretch.None });
-
-                //grid.PointerPressed += (e, s) => 
-                //{
-                //    grid.Children.Add(new TextBlock { Text = "Pressed" });
-                //};
-
-                WidgetGridView.Items.Add(new Widget());
-            }
+        private void Index_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            LoadPopular();
         }
     }
 }
