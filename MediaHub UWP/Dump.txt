@@ -1,0 +1,17 @@
+﻿                <!--<GridView ItemsPanel="{StaticResource GridViewWidgetPanel}" x:Name="WidgetGridView"
+              Margin="0,0,0,8"
+              Padding="5,5,5,5"
+              VerticalAlignment="Stretch" 
+              HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FF665858">
+                </GridView>-->
+
+                <ListView x:Name="ListView" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+    ScrollViewer.HorizontalScrollMode="Enabled"                  
+    ScrollViewer.VerticalScrollMode="Disabled"
+    ItemsSource="{Binding Collection}" Background="#FFE8E0E0" Margin="327,336,327,336" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Background="Transparent" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
