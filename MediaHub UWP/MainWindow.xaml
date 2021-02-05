@@ -1,6 +1,6 @@
 ﻿<Page
     x:Name="Index"
-    x:Class="MediaHub_UWP.HomePage"
+    x:Class="MediaHub_UWP.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,10 +16,10 @@
     </Page.Resources>
 
 
-    <ScrollViewer>
+    <ScrollViewer HorizontalScrollMode="Disabled" Height="1080" VerticalAlignment="Center" HorizontalAlignment="Left" Width="1920">
 
 
-        <NavigationView IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsBackEnabled="False" x:Name="NavBar" PaneDisplayMode="Top" IsPaneOpen="False" Height="1575" Width="1920" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <NavigationView IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsBackEnabled="False" x:Name="NavBar" PaneDisplayMode="Top" IsPaneOpen="False" Height="1575" Width="1838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
 
             <NavigationView.MenuItems>
                 <NavigationViewItem Tag="home" Icon="Home" Content="Home" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsSelected="True"/>
@@ -31,12 +31,12 @@
                 <NavigationViewItemSeparator/>
             </NavigationView.MenuItems>
 
-            <GridView>
-                <Grid Width="1918">
+            <GridView HorizontalAlignment="Center" Width="1838" Height="1535" VerticalAlignment="Bottom">
+                <Grid Width="1918" FocusVisualPrimaryBrush="{x:Null}">
                     <ListView x:Name="PopularList" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
                     ScrollViewer.HorizontalScrollMode="Enabled"                  
                     ScrollViewer.VerticalScrollMode="Disabled"
-                    ItemsSource="{Binding Collection}" Margin="10,63,10,0" Height="350" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                    ItemsSource="{Binding Collection}" Margin="0,63,288,0" Height="350" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Background="Transparent" Orientation="Horizontal" />
