@@ -15,61 +15,61 @@
         </ItemsPanelTemplate>
     </Page.Resources>
 
+    <NavigationView IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsBackEnabled="False" x:Name="NavBar" PaneDisplayMode="Top" IsPaneOpen="False" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,0,0,0">
 
-    <ScrollViewer HorizontalScrollMode="Disabled" Height="1080" VerticalAlignment="Center" HorizontalAlignment="Left" Width="1920">
+        <NavigationView.MenuItems>
+            <NavigationViewItem Tag="home" Icon="Home" Content="Home" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsSelected="True"/>
 
+            <NavigationViewItem Tag="movies" Content="Movies"/>
 
-        <NavigationView IsBackButtonVisible="Collapsed" IsSettingsVisible="False" IsBackEnabled="False" x:Name="NavBar" PaneDisplayMode="Top" IsPaneOpen="False" Height="1575" Width="1838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <NavigationViewItem Tag="shows" Content="Shows"/>
 
-            <NavigationView.MenuItems>
-                <NavigationViewItem Tag="home" Icon="Home" Content="Home" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsSelected="True"/>
+            <NavigationViewItemSeparator/>
+        </NavigationView.MenuItems>
 
-                <NavigationViewItem Tag="movies" Content="Movies"/>
+        <ScrollViewer Margin="10,10,10,10">
 
-                <NavigationViewItem Tag="shows" Content="Shows"/>
-
-                <NavigationViewItemSeparator/>
-            </NavigationView.MenuItems>
-
-            <GridView HorizontalAlignment="Center" Width="1838" Height="1535" VerticalAlignment="Bottom">
-                <Grid Width="1918" FocusVisualPrimaryBrush="{x:Null}">
-                    <ListView x:Name="PopularList" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+            <Grid x:Name="MainGrid" Height="1020">
+                
+                <ListView x:Name="PopularList" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
                     ScrollViewer.HorizontalScrollMode="Enabled"                  
                     ScrollViewer.VerticalScrollMode="Disabled"
-                    ItemsSource="{Binding Collection}" Margin="0,63,288,0" Height="350" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Background="Transparent" Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                    <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="Wat is populair" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="282" FontSize="36" FontWeight="Bold"/>
-                    <ListView x:Name="TrendingList" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                    ItemsSource="{Binding Collection}" Margin="10,63,10,0" Height="355" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsStackPanel Background="Transparent" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+                <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="Populair" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="282" FontSize="36" FontWeight="Bold"/>
+
+                <TextBlock HorizontalAlignment="Left" Margin="0,522,0,0" Text="Suggestion" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="282" FontSize="36" FontWeight="Bold"/>
+                <ListView x:Name="Bingo" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
                     ScrollViewer.HorizontalScrollMode="Enabled"                  
                     ScrollViewer.VerticalScrollMode="Disabled"
-                    ItemsSource="{Binding Collection}" Margin="10,525,10,0" Height="350" VerticalAlignment="Top">
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Background="Transparent" Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                    <TextBlock HorizontalAlignment="Left" Margin="10,472,0,0" Text="Trending" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="282" FontSize="36" FontWeight="Bold"/>
-                    <ListView x:Name="FreeToWatchList" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                    ItemsSource="{Binding Collection}" Margin="10,575,10,0" Height="355" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsStackPanel Background="Transparent" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+
+                <!--<TextBlock HorizontalAlignment="Left" Margin="10,962,0,0" Text="Suggestion" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="282" FontSize="36" FontWeight="Bold"/>
+                <ListView x:Name="l" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
                     ScrollViewer.HorizontalScrollMode="Enabled"                  
                     ScrollViewer.VerticalScrollMode="Disabled"
-                    ItemsSource="{Binding Collection}" Margin="10,1005,10,0" Height="350" VerticalAlignment="Top">
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Background="Transparent" Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                    <TextBlock HorizontalAlignment="Left" Margin="10,952,0,0" Text="Free To Watch" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="282" FontSize="36" FontWeight="Bold"/>
-                </Grid>
+                    ItemsSource="{Binding Collection}" Margin="10,1015,10,0" Height="355" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsStackPanel Background="Transparent" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>-->
+            </Grid>
 
-            </GridView>
+        </ScrollViewer>
 
-        </NavigationView>
-    </ScrollViewer>
+    </NavigationView>
+
 </Page>
