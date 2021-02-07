@@ -1,14 +1,13 @@
-﻿using MediaHub_UWP.Controls;
-using System;
-using System.Drawing;
-using System.Threading.Tasks;
-using TMDbLib.Client;
+﻿using System;
+using System.Linq;
 using MediaHub_UWP.Pages;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using System.Collections.Generic;
+using Windows.UI.Xaml.Media;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -23,15 +22,18 @@ namespace MediaHub_UWP
         public static MainWindow Instance;
         private readonly Frame ContentFrame;
         private readonly Dictionary<string, Type> Routes;
+        private readonly Queue<string> RouteHistoryQueue;
+        private readonly Brush NotSelectedItemBrush = new SolidColorBrush(Color.FromArgb((int)(255f * 0.75f), 145, 145, 145));
+        private readonly Brush SelectedItemBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
 
         public MainWindow()
         {
             MaximizeWindowOnLoad();
             InitializeComponent();
 
-            ContentFrame = (Frame)NavBar.Content;
-
             Instance = this;
+            ContentFrame = (Frame)NavBar.Content;
+            RouteHistoryQueue = new Queue<string>();
             Routes = new Dictionary<string, Type> {
                 {"home",typeof(HomePage) },
                 {"movies", typeof(MoviesPage) },
@@ -40,7 +42,7 @@ namespace MediaHub_UWP
 
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
 
-            var background = Windows.UI.Color.FromArgb(255, 13, 37, 63);
+            var background = Color.FromArgb(255, 13, 37, 63);
 
             titleBar.BackgroundColor = background;
         }
@@ -53,47 +55,99 @@ namespace MediaHub_UWP
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
-        private void Grid_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 0);
-        }
-
-        private void Grid_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Home.IsSelected = true;
-            Home.IsEnabled = true;
-            ContentFrame.Navigate(Routes["home"]);
-        }
-
-        private bool TryGoBack()
-        {
-            if (!ContentFrame.CanGoBack)
-                return false;
-
-            ContentFrame.GoBack();
-            return true;
         }
 
         private void NavBar_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var item = ((NavigationViewItem)sender.SelectedItem);
 
-            item.IsSelected = true;
-            item.IsEnabled = true;
+            var tag = item.Tag.ToString();
 
-            ContentFrame.Navigate(Routes[item.Tag.ToString()]);
+            RouteHistoryQueue.Enqueue(tag);
+
+            ContentFrame.Navigate(Routes[tag]);
+            
+            HighLightByTag(tag);
         }
 
         private void NavBar_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
-            // Track history
-            // Update navbar
-            TryGoBack();
+            // Still buggy
+            // TODO: Redo this
+            if (ContentFrame.CanGoBack && RouteHistoryQueue.Count >= 2)
+            {
+                var currentViewItem = (NavigationViewItem)NavBar.SelectedItem;
+
+                currentViewItem.IsSelected = false;
+
+                var previousTextBlock = (TextBlock)currentViewItem.Content;
+
+                previousTextBlock.Foreground = NotSelectedItemBrush;
+
+                var previousTag = RouteHistoryQueue.Dequeue();
+
+                var previousNvi = GetNavigationViewItemByTag(previousTag);
+
+                if (previousNvi != null)
+                {
+                    var textBlock = (TextBlock)previousNvi.Content;
+
+                    textBlock.Foreground = SelectedItemBrush;
+
+                    previousNvi.IsSelected = true;
+                }
+
+                RouteHistoryQueue.Dequeue();
+            }
+            else return;
+        }
+
+        private NavigationViewItem GetNavigationViewItemByTag(string tag)
+        {
+            return (NavigationViewItem)NavBar.MenuItems.Where(i =>
+           {
+               var nvi = (NavigationViewItem)i;
+
+               if (nvi.Tag == null)
+                   return false;
+               else
+                   return nvi.Tag.ToString().Equals(tag);
+
+           }).FirstOrDefault();
+        }
+
+        private void HighLightByTag(string tag)
+        {
+            foreach(var item in NavBar.MenuItems)
+            {
+                if (item is NavigationViewItem nvi)
+                {
+                    if (nvi.Tag == null) continue;
+
+                    var nviTag = nvi.Tag.ToString();
+
+                    if (string.IsNullOrEmpty(nviTag)) continue;
+
+                    // Highlight the selected item
+                    if (nviTag.Equals(tag))
+                    {
+                        if (nvi.Content is TextBlock textBlock)
+                        {
+                            textBlock.Foreground = SelectedItemBrush;
+                        }
+                    }
+                    else // remove highlight away from not selected items
+                    {
+                        if (nvi.Content is TextBlock textBlock)
+                        {
+                            textBlock.Foreground = NotSelectedItemBrush;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -7,28 +7,22 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pages="using:MediaHub_UWP.Pages"
     mc:Ignorable="d"
     NavigationCacheMode="Enabled" RequestedTheme="Dark" Loaded="Window_Loaded" Background="#FF0D253F">
-    <Page.Resources>
-        <ItemsPanelTemplate x:Key="GridViewWidgetPanel">
-            <ItemsWrapGrid Orientation="Horizontal"
-                   HorizontalAlignment="Center"/>
-        </ItemsPanelTemplate>
-    </Page.Resources>
-
+    
     <NavigationView x:Name="NavBar" PaneDisplayMode="Top" IsBackEnabled="True" IsSettingsVisible="False" IsBackButtonVisible="Visible" FocusVisualSecondaryBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" SelectionChanged="NavBar_SelectionChanged" BackRequested="NavBar_BackRequested">
         <NavigationView.MenuItems>
-            <NavigationViewItem IsEnabled="False" Background="{x:Null}">
+            <NavigationViewItem Tag="logo" IsEnabled="False" Background="{x:Null}">
                 <Image Stretch="Fill" Source="/Assets/MediaHubLogo.png"></Image>
             </NavigationViewItem>
 
-            <NavigationViewItem x:Name="Home" IsEnabled="True" Tag="home" FocusVisualSecondaryBrush="{x:Null}" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" Foreground="{x:Null}" Background="{x:Null}" IsSelected="True">
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="16">Home</TextBlock>
+            <NavigationViewItem Name="Home" IsEnabled="True" Tag="home" FocusVisualSecondaryBrush="{x:Null}" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" Foreground="{x:Null}" Background="{x:Null}" IsSelected="True">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#BF919191" FontWeight="Bold" FontSize="16">Home</TextBlock>
             </NavigationViewItem>
 
-            <NavigationViewItem  x:Name="Movie" Tag="movies" Margin="0,0,0,0">
+            <NavigationViewItem Name="Movie" Tag="movies" Margin="0,0,0,0">
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#BF919191" FontWeight="Bold" FontSize="16">Movies</TextBlock>
             </NavigationViewItem>
 
-            <NavigationViewItem x:Name="Show" Tag="shows" Margin="0,0,0,0" Foreground="#FFC52020">
+            <NavigationViewItem Name="Show" Tag="shows" Margin="0,0,0,0" Foreground="#FFC52020">
                 <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="#BF919191">Shows</TextBlock>
             </NavigationViewItem>
 
