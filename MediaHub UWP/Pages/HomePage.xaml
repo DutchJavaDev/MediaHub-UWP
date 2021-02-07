@@ -1,0 +1,78 @@
+﻿<Page
+    x:Class="MediaHub_UWP.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaHub_UWP.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="-3,0,0,0" Background="#FF0D253F" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+
+    <ScrollViewer Margin="10,10,10,10">
+
+        <Grid x:Name="MainGrid" Height="1285">
+            <ListView x:Name="PopularMovies" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                    ScrollViewer.HorizontalScrollMode="Enabled"                  
+                    ScrollViewer.VerticalScrollMode="Disabled"
+                    ItemsSource="{x:Bind Movies}" Margin="10,63,10,20" Height="355" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Background="Transparent" Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="Populair Movies" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="282" FontSize="36" FontWeight="Bold"/>
+
+            <TextBlock HorizontalAlignment="Left" Margin="0,423,0,0" Text="Movie Suggestion" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="337" FontSize="36" FontWeight="Bold"/>
+            <ListView x:Name="MovieSuggestion" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                    ScrollViewer.HorizontalScrollMode="Enabled"                  
+                    ScrollViewer.VerticalScrollMode="Disabled"
+                    ItemsSource="{x:Bind MoviesSugestions}" Margin="10,476,10,20" Height="355" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Background="Transparent" Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+
+            <TextBlock HorizontalAlignment="Left" Margin="10,836,0,0" Text="Populair Shows" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="282" FontSize="36" FontWeight="Bold"/>
+            <ListView x:Name="PopularTv" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                    ScrollViewer.HorizontalScrollMode="Enabled"                  
+                    ScrollViewer.VerticalScrollMode="Disabled"
+                    ItemsSource="{x:Bind TvSugestions}" Margin="10,889,10,20" Height="355" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Background="Transparent" Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+
+            <!--<TextBlock HorizontalAlignment="Left" Margin="10,962,0,0" Text="Suggestion" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="282" FontSize="36" FontWeight="Bold"/>
+            <ListView x:Name="l" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                    ScrollViewer.HorizontalScrollMode="Enabled"                  
+                    ScrollViewer.VerticalScrollMode="Disabled"
+                    ItemsSource="{Binding Collection}" Margin="10,1015,10,0" Height="355" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Background="Transparent" Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>-->
+
+            <!--<TextBlock HorizontalAlignment="Left" Margin="10,962,0,0" Text="Suggestion" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="282" FontSize="36" FontWeight="Bold"/>
+            <ListView x:Name="l" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                    ScrollViewer.HorizontalScrollMode="Enabled"                  
+                    ScrollViewer.VerticalScrollMode="Disabled"
+                    ItemsSource="{Binding Collection}" Margin="10,1015,10,0" Height="355" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Background="Transparent" Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>-->
+
+        </Grid>
+
+    </ScrollViewer>
+
+</Page>
