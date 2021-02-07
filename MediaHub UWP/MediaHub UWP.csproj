@@ -122,8 +122,11 @@
     <Compile Include="Controls\MovieInfo.xaml.cs">
       <DependentUpon>MovieInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Widget.xaml.cs">
-      <DependentUpon>Widget.xaml</DependentUpon>
+    <Compile Include="Controls\MovieWidget.xaml.cs">
+      <DependentUpon>MovieWidget.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ShowWidget.xaml.cs">
+      <DependentUpon>ShowWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -183,7 +186,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Widget.xaml">
+    <Page Include="Controls\MovieWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ShowWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,6 +213,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
