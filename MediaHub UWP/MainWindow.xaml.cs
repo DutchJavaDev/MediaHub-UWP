@@ -1,10 +1,14 @@
 ﻿using MediaHub_UWP.Controls;
+using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using TMDbLib.Client;
+using MediaHub_UWP.Pages;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using System.Collections.Generic;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -16,15 +20,29 @@ namespace MediaHub_UWP
     /// </summary>
     public sealed partial class MainWindow : Page
     {
-        private readonly TMDbClient Client;
         public static MainWindow Instance;
+        private readonly Frame ContentFrame;
+        private readonly Dictionary<string, Type> Routes;
 
         public MainWindow()
         {
             MaximizeWindowOnLoad();
             InitializeComponent();
+
+            ContentFrame = (Frame)NavBar.Content;
+
             Instance = this;
-            Client = Helper.CreateClient();
+            Routes = new Dictionary<string, Type> {
+                {"home",typeof(HomePage) },
+                {"movies", typeof(MoviesPage) },
+                {"shows", typeof(ShowsPage) }
+            };
+
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+
+            var background = Windows.UI.Color.FromArgb(255, 13, 37, 63);
+
+            titleBar.BackgroundColor = background;
         }
 
         private static void MaximizeWindowOnLoad()
@@ -35,30 +53,47 @@ namespace MediaHub_UWP
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
-        public async void LoadPopular()
+        private void Grid_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            var popularMovies = await Client.GetMoviePopularListAsync(page: 1);
-            //var populoarShows = await Client.GetTvShowPopularAsync(page: 1);
-
-            //var movie = await Client.GetMovieAsync(47964, extraMethods: TMDbLib.Objects.Movies.MovieMethods.Images);
-
-            //PopularList.Items.Add(new Widget(movie.Title, movie.ReleaseDate.HasValue ? movie.ReleaseDate.Value.ToShortDateString() : "nan", movie.BackdropPath));
-
-            //MainGrid
-            foreach (var movie in popularMovies.Results)
-            {
-                PopularList.Items.Add(new Widget(movie.Title, movie.ReleaseDate.HasValue ? movie.ReleaseDate.Value.ToShortDateString() : "nan", movie.BackdropPath));
-            }
-
-            //foreach (var show in populoarShows.Results)
-            //{
-            //    Bingo.Items.Add(new Widget(title: show.Name, year: show.FirstAirDate.ToString(), path: show.PosterPath));
-            //}
+            Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 0);
         }
 
-        private void Index_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void Grid_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            LoadPopular();
+            Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Home.IsSelected = true;
+            Home.IsEnabled = true;
+            ContentFrame.Navigate(Routes["home"]);
+        }
+
+        private bool TryGoBack()
+        {
+            if (!ContentFrame.CanGoBack)
+                return false;
+
+            ContentFrame.GoBack();
+            return true;
+        }
+
+        private void NavBar_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            var item = ((NavigationViewItem)sender.SelectedItem);
+
+            item.IsSelected = true;
+            item.IsEnabled = true;
+
+            ContentFrame.Navigate(Routes[item.Tag.ToString()]);
+        }
+
+        private void NavBar_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            // Track history
+            // Update navbar
+            TryGoBack();
         }
     }
 }

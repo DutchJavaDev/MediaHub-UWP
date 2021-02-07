@@ -4,4 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MediaHub_UWP">
 
+    <Application.Resources>
+        <x:Double x:Key="ContentDialogMaxWidth">1200</x:Double>
+        <x:Double x:Key="ContentDialogMaxHeight">800</x:Double>
+        <x:Double x:Key="ContentdialogMinWidth">1200</x:Double>
+        <x:Double x:Key="ContentDialogMinHeight">800</x:Double>
+    </Application.Resources>
+    
+    
+    
 </Application>

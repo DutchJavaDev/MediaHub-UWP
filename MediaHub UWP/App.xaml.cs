@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MediaHub_UWP.Pages;
 
 namespace MediaHub_UWP
 {
@@ -30,7 +31,6 @@ namespace MediaHub_UWP
         public App()
         {
             InitializeComponent();
-            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace MediaHub_UWP
                 }
 
                 // Place the frame in the current Window
-                Windows.UI.Xaml.Window.Current.Content = rootFrame;
+                Window.Current.Content = rootFrame;
             }
 
             if (e.PrelaunchActivated == false)
