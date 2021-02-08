@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ListViewWidget.xaml.cs">
+      <DependentUpon>ListViewWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MovieInfo.xaml.cs">
       <DependentUpon>MovieInfo.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ListViewWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MovieInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
