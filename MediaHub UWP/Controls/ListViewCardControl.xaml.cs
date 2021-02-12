@@ -7,12 +7,12 @@ using Windows.UI.Xaml.Data;
 
 namespace MediaHub_UWP.Controls
 {
-    public sealed partial class ListViewWidget : UserControl
+    public sealed partial class ListViewCardControl : UserControl
     {
         public readonly Orientation OrientationView = Orientation.Horizontal;
         public string HeaderText { get; set; } = string.Empty;
 
-        public ListViewWidget()
+        public ListViewCardControl()
         {
             InitializeComponent();
         }

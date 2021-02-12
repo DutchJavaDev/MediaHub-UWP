@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="MediaHub_UWP.Controls.ListViewWidget"
+    x:Class="MediaHub_UWP.Controls.ListViewCardControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MediaHub_UWP.Controls"
@@ -7,15 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:Width="1900"
-    d:Height="400" Margin="0,0,0,50" Height="465">
-    <StackPanel Background="#FF0B1F35">
+    d:Height="500" Margin="0,0,0,50">
+    <StackPanel Background="#FF0D253F" Margin="0,0,0,-45">
         <Grid Height="55">
             <TextBlock HorizontalAlignment="Left" Text="{x:Bind HeaderText}" TextWrapping="Wrap" VerticalAlignment="Center" Height="55" Width="957" FontSize="36" FontWeight="Bold" Padding="15,0,0,0"/>
         </Grid>
-        <ListView x:Name="View" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+        <ListView x:Name="View" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Visible"
                     ScrollViewer.HorizontalScrollMode="Enabled"                  
-                    ScrollViewer.VerticalScrollMode="Enabled"
-                     Height="345" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinHeight="345" MaxHeight="345">
+                    ScrollViewer.VerticalScrollMode="Disabled"
+                    Height="490" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinHeight="490" FocusVisualPrimaryBrush="{x:Null}" Foreground="{x:Null}" FocusVisualSecondaryBrush="{x:Null}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Orientation="Horizontal" Background="Transparent" Loaded="ItemsStackPanel_Loaded"/>
