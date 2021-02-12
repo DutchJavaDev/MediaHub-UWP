@@ -1,20 +1,10 @@
 ﻿using MediaHub_UWP.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -27,9 +17,9 @@ namespace MediaHub_UWP.Controls
 
         private readonly SearchMovieTvBase CardItem;
 
-        private readonly MenuFlyout SubMenu; // TODO
         private readonly MenuFlyoutItem AddToList; // TODO
         private readonly MenuFlyoutItem AddToFavorite; // TODO
+        private const string POSTER_BASE_URL = "https://image.tmdb.org/t/p/original/";
 
         public CardControl(SearchMovieTvBase cardItem)
         {
@@ -44,31 +34,93 @@ namespace MediaHub_UWP.Controls
                 CardTitle = GetCardTitle(),
                 CardDate = GetCardDate()
             };
+
+            AddToList = new MenuFlyoutItem 
+            {
+                Text = "Add to list",
+            };
+
+            AddToFavorite = new MenuFlyoutItem 
+            {
+                Text = "Favorite ❤️"
+            };
+
+            Menu.Items.Add(AddToList);
+            Menu.Items.Add(AddToFavorite);
         }
 
         private string GetCardPosterPath()
         {
-            return string.Empty; // TODO
+            switch (CardMediaType)
+            {
+                case MediaType.Movie:
+                    return $"{POSTER_BASE_URL}{CardItem.BackdropPath}";
+
+                case MediaType.Tv:
+                    return $"{POSTER_BASE_URL}{CardItem.BackdropPath}";
+
+                case MediaType.Person:
+                    return "https://i.stack.imgur.com/6M513.png";
+
+                case MediaType.Unknown:
+                    return "https://i.stack.imgur.com/6M513.png";
+
+                default: return "https://i.stack.imgur.com/6M513.png";
+            }
         }
 
         private string GetCardTitle()
         {
-            return string.Empty; // TODO
+            switch (CardMediaType)
+            {
+                case MediaType.Movie:
+                    return ((SearchMovie) CardItem).Title;
+
+                case MediaType.Tv:
+                    return ((SearchTv) CardItem).OriginalName;
+
+                case MediaType.Person:
+                    return string.Empty;
+
+                case MediaType.Unknown:
+                    return string.Empty;
+
+                default: return string.Empty;
+            }
         }
 
         private string GetCardDate()
         {
-            return string.Empty; // TODO
+            switch (CardMediaType)
+            {
+                case MediaType.Movie:
+                    return ((SearchMovie) CardItem).ReleaseDate.Value.ToShortDateString() ?? "No date set";
+
+                case MediaType.Tv:
+                    return ((SearchTv)CardItem).FirstAirDate.Value.ToShortDateString() ?? "No date set";
+
+                case MediaType.Person:
+                    return string.Empty;
+
+                case MediaType.Unknown:
+                    return string.Empty;
+
+                default: return string.Empty;
+            }
         }
 
         private void Poster_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            // TODO
+            
         }
 
-        private void MenuFlyoutButton_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void MenuFlyoutButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO
+            Menu.ShowAt(sender as UIElement, new FlyoutShowOptions
+            {
+                Placement = FlyoutPlacementMode.Right,
+                ShowMode = FlyoutShowMode.Auto
+            });
         }
     }
 }

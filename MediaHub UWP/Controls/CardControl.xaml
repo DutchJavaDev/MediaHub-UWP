@@ -7,11 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Height="350" Width="275">
-    <StackPanel Background="#FF0D253F">
-        <Grid Height="270" Background="#FFAC7878">
-            <Image x:Name="Poster" Width="275" Source="{x:Bind Model.CardPosterPath}" Stretch="Fill" PointerPressed="Poster_PointerPressed"></Image>
+    
+    <StackPanel Background="Transparent">
+        <Grid Height="270">
+            <Image x:Name="Poster" Width="275" Source="{x:Bind Model.CardPosterPath}" Stretch="Uniform" PointerPressed="Poster_PointerPressed"></Image>
             <Button x:Name="MenuFlyoutButton" Background="#8C9C9797" BorderThickness="1.0" BorderBrush="White" CornerRadius="20"
-                VerticalAlignment="Top" Margin="225,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Width="40" Height="40" FontWeight="Normal" PointerPressed="MenuFlyoutButton_PointerPressed">
+                VerticalAlignment="Top" Margin="225,10,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Height="40" FontWeight="Normal" HorizontalAlignment="Stretch" Click="MenuFlyoutButton_Click">
+                <Button.ContextFlyout>
+                    <MenuFlyout x:Name="Menu"/>
+                </Button.ContextFlyout>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Height="32" Width="23" Margin="1,-15,0,0" FontWeight="Bold" FontStyle="Normal"> ...</TextBlock>
             </Button>
         </Grid>
