@@ -122,17 +122,11 @@
     <Compile Include="Controls\CardControl.xaml.cs">
       <DependentUpon>CardControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ListViewWidget.xaml.cs">
-      <DependentUpon>ListViewWidget.xaml</DependentUpon>
+    <Compile Include="Controls\ListViewCardControl.xaml.cs">
+      <DependentUpon>ListViewCardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MovieInfo.xaml.cs">
       <DependentUpon>MovieInfo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MovieWidget.xaml.cs">
-      <DependentUpon>MovieWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ShowWidget.xaml.cs">
-      <DependentUpon>ShowWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -193,19 +187,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\ListViewWidget.xaml">
+    <Page Include="Controls\ListViewCardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MovieInfo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\MovieWidget.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\ShowWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
