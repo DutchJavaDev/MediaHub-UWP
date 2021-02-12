@@ -11,11 +11,6 @@ using System.Threading.Tasks;
 
 namespace MediaHub_UWP.Pages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    /// 
-
     public enum LoadAction
     {
         Movie,
@@ -28,27 +23,27 @@ namespace MediaHub_UWP.Pages
 
     public sealed partial class HomePage : Page
     {
-        private readonly ObservableCollection<MovieWidget> ObservableCollectionForMovies = new ObservableCollection<MovieWidget>();
-        private readonly ObservableCollection<ShowWidget> ObservableCollectionForTvShows = new ObservableCollection<ShowWidget>();
-        private readonly ObservableCollection<MovieWidget> ObservableCollectionForMoviesSugestions = new ObservableCollection<MovieWidget>();
-        private readonly ObservableCollection<ShowWidget> ObservableCollectionForTvSugestions = new ObservableCollection<ShowWidget>();
+        private readonly ObservableCollection<CardControl> ObservableCollectionForMovies = new ObservableCollection<CardControl>();
+        private readonly ObservableCollection<CardControl> ObservableCollectionForTvShows = new ObservableCollection<CardControl>();
+        private readonly ObservableCollection<CardControl> ObservableCollectionForMoviesSugestions = new ObservableCollection<CardControl>();
+        private readonly ObservableCollection<CardControl> ObservableCollectionForTvSugestions = new ObservableCollection<CardControl>();
 
-        private readonly ListViewWidget PopularMovies = new ListViewWidget
+        private readonly ListViewCardControl PopularMovies = new ListViewCardControl
         {
             HeaderText = "Popular Movies"
         };
 
-        private readonly ListViewWidget MoviesSuggestions = new ListViewWidget
+        private readonly ListViewCardControl MoviesSuggestions = new ListViewCardControl
         {
             HeaderText = "Movies Suggestions"
         };
 
-        private readonly ListViewWidget PopularShows = new ListViewWidget 
+        private readonly ListViewCardControl PopularShows = new ListViewCardControl 
         {
             HeaderText = "Popular Shows"
         };
 
-        private readonly ListViewWidget ShowsSuggestions = new ListViewWidget 
+        private readonly ListViewCardControl ShowsSuggestions = new ListViewCardControl 
         {
             HeaderText = "Shows Suggestion"
         };
@@ -90,7 +85,7 @@ namespace MediaHub_UWP.Pages
                             var collection = (await client.GetMoviePopularListAsync(page: 1)).Results.Select(i => (SearchMovieTvBase)i).ToList();
 
                             foreach (var item in collection)
-                                ObservableCollectionForMovies.Add(new MovieWidget(item));
+                                ObservableCollectionForMovies.Add(new CardControl(item));
                         }
                         break;
 
@@ -100,7 +95,7 @@ namespace MediaHub_UWP.Pages
                             var collection = (await client.GetMovieRecommendationsAsync(293863, page: 1)).Results.Select(i => (SearchMovieTvBase)i).ToList();
 
                             foreach (var item in collection)
-                                ObservableCollectionForMoviesSugestions.Add(new MovieWidget(item));
+                                ObservableCollectionForMoviesSugestions.Add(new CardControl(item));
                         }
                         break;
 
@@ -121,17 +116,17 @@ namespace MediaHub_UWP.Pages
                             var collection = (await client.GetTvShowPopularAsync(page: 1)).Results.Select(i => (SearchMovieTvBase)i).ToList();
 
                             foreach (var item in collection)
-                                ObservableCollectionForTvShows.Add(new ShowWidget(item));
+                                ObservableCollectionForTvShows.Add(new CardControl(item));
                         }
                         break;
 
                     case LoadAction.TvSuggestion:
                         {
                             // Based off the best show over The Man in the High Castle (2015)
-                            var collection = (await client.GetTvShowRecommendationsAsync(62017,page: 1)).Results.Select(i => (SearchMovieTvBase)i).ToList();
+                            var collection = (await client.GetTvShowRecommendationsAsync(62017, page: 1)).Results.Select(i => (SearchMovieTvBase)i).ToList();
 
                             foreach (var item in collection)
-                                ObservableCollectionForTvSugestions.Add(new ShowWidget(item));
+                                ObservableCollectionForTvSugestions.Add(new CardControl(item));
                         }
                         break;
 
