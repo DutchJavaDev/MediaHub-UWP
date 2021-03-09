@@ -2,9 +2,9 @@
     x:Name="Index"
     x:Class="MediaHub_UWP.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pages="using:MediaHub_UWP.Pages"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     NavigationCacheMode="Enabled" RequestedTheme="Dark" Loaded="Window_Loaded" Background="#FF0D253F">
     
@@ -28,6 +28,10 @@
 
             <NavigationViewItemSeparator/>
 
+            <NavigationViewItem Width="288">
+                <TextBox x:Name="SearchBar" PlaceholderText="Search for a movie, TV series or person"></TextBox>
+            </NavigationViewItem>
+            
         </NavigationView.MenuItems>
         <Frame>
             <Frame.ContentTransitions>

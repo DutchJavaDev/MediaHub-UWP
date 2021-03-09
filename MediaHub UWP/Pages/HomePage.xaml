@@ -7,8 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="-3,0,0,0" Background="#FF0D253F" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 
-    <ScrollViewer Margin="10,10,10,10">
-        <StackPanel x:Name="PageContents">
-        </StackPanel>
-    </ScrollViewer>
+    <GridView x:Name="Grid" ItemsSource="{x:Bind Cards}">
+        
+    </GridView>
 </Page>

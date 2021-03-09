@@ -125,9 +125,7 @@
     <Compile Include="Controls\ListViewCardControl.xaml.cs">
       <DependentUpon>ListViewCardControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MovieInfo.xaml.cs">
-      <DependentUpon>MovieInfo.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Extensions.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -176,7 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.10</Version>
+      <Version>6.2.12</Version>
     </PackageReference>
     <PackageReference Include="TMDbLib">
       <Version>1.6.0</Version>
@@ -188,10 +186,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ListViewCardControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\MovieInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
