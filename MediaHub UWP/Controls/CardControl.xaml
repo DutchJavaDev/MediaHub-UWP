@@ -24,4 +24,5 @@
             <TextBlock Text="{x:Bind Model.CardDate}" TextWrapping="Wrap" Margin="0,40,0,4" Padding="10,8,0,0" FontSize="18" FontWeight="Bold"/>
         </Grid>
     </StackPanel>
+    
 </UserControl>

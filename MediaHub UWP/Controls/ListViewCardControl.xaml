@@ -15,7 +15,7 @@
         <ListView x:Name="View" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Visible"
                     ScrollViewer.HorizontalScrollMode="Enabled"                  
                     ScrollViewer.VerticalScrollMode="Disabled"
-                    Height="490" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinHeight="490" FocusVisualPrimaryBrush="{x:Null}" Foreground="{x:Null}" FocusVisualSecondaryBrush="{x:Null}">
+                    Height="490" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinHeight="490" FocusVisualPrimaryBrush="{x:Null}" Foreground="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" UseSystemFocusVisuals="False" XYFocusDownNavigationStrategy="Auto">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Orientation="Horizontal" Background="Transparent" Loaded="ItemsStackPanel_Loaded"/>

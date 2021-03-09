@@ -1,4 +1,5 @@
 ﻿using MediaHub_UWP.Models;
+using System;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
 using Windows.UI.Xaml;
@@ -109,9 +110,17 @@ namespace MediaHub_UWP.Controls
             }
         }
 
-        private void Poster_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private async void Poster_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            
+            ContentDialog noWifiDialog = new ContentDialog()
+            {
+                Title = "No wifi connection",
+                Content = "Check connection and try again.",
+                CloseButtonText = "Ok",
+                Width = 200
+            };
+
+            await noWifiDialog.ShowAsync();
         }
 
         private void MenuFlyoutButton_Click(object sender, RoutedEventArgs e)
